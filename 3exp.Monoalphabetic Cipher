@@ -1,0 +1,56 @@
+Monoalphabetic Cipher 
+ 
+#include <stdio.h> 
+#include <string.h> 
+ 
+#define pf printf 
+#define sf scanf 
+ 
+char dcl[26] = "ZXDGSZANYOBTMJCEVHKWPLQURI"; 
+char ecl[26] = "abcdefghijklmnopqrstuvwxyz"; 
+ 
+void ec(char *p); 
+void dc(char *p); 
+ 
+int main()   // changed from void main() 
+{ 
+    char p[50]; 
+ 
+    pf("\nEnter plain text:"); 
+    sf("%s", p); 
+ 
+    pf("\nAfter Encryption:\n"); 
+    ec(p); 
+    pf("\n%s", p); 
+ 
+    pf("\nAfter Decryption:\n"); 
+    dc(p); 
+    pf("\n%s", p); 
+ 
+    return 0; 
+} 
+ 
+void ec(char *p) 
+{ 
+    int i = 0; 
+    while (*(p + i) != '\0') 
+    { 
+        *(p + i) = dcl[*(p + i) - 97]; 
+        i++; 
+    } 
+} 
+ 
+void dc(char *p) 
+{ 
+    int i = 0, j; 
+    while (*(p + i) != '\0') 
+    { 
+        for (j = 0; j < 26; j++) 
+        { 
+            if (dcl[j] == *(p + i)) 
+                break; 
+        } 
+        *(p + i) = ecl[j]; 
+        i++; 
+    } 
+}
