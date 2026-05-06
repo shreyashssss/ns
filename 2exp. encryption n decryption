@@ -1,0 +1,48 @@
+Encryption & Decryption (Caesar Cipher) 
+ 
+#include <stdio.h> 
+ 
+int main() 
+{ 
+    int i, x; 
+    char str[100]; 
+ 
+    printf("Please enter a string:\n"); 
+    scanf("%s", str); 
+ 
+    printf("Please choose following options:\n"); 
+    printf("1 = Encrypt the string.\n"); 
+    printf("2 = Decrypt the string.\n"); 
+    scanf("%d", &x); 
+ 
+    for(i = 0; str[i] != '\0'; i++) 
+    { 
+        switch(x) 
+        { 
+            case 1: 
+                str[i] = str[i] + 3; 
+                break; 
+ 
+            case 2: 
+                str[i] = str[i] - 3; 
+                break; 
+ 
+            default: 
+                printf("Invalid choice"); 
+                return 0; 
+        } 
+    } 
+ 
+    switch(x) 
+    { 
+        case 1: 
+            printf("Encrypted string: %s", str); 
+            break; 
+ 
+        case 2: 
+            printf("Decrypted string: %s", str); 
+            break; 
+    } 
+ 
+    return 0; 
+}
