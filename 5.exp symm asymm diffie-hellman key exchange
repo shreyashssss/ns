@@ -1,0 +1,52 @@
+Diffie-Hellman Key Exchange 
+ 
+ 
+#include <stdio.h> 
+#include <math.h> 
+ 
+// Function to calculate (base^exp) % mod 
+int power(int base, int exp, int mod) 
+{ 
+    int result = 1; 
+    for(int i = 0; i < exp; i++) 
+    { 
+        result = (result * base) % mod; 
+    } 
+    return result; 
+} 
+ 
+int main() 
+{ 
+    int p = 23;   // prime number 
+    int g = 5;    // primitive root 
+ 
+    int x = 3;    // Alice private key 
+    int y = 6;    // Bob private key 
+ 
+    int R1, R2, K1, K2; 
+ 
+    // Step 1 & 2 
+    R1 = power(g, x, p); 
+    R2 = power(g, y, p); 
+ 
+    printf("The results are as follows:\n"); 
+ 
+    printf("1)Alice choose x=%d & calculates R1=%d\n", x, R1); 
+    printf("2)Bob chooses y=%d & calculates R2=%d\n", y, R2); 
+ 
+    // Step 3 & 4 
+    printf("3)Alice sends the number %d to Bob\n", R1); 
+    printf("4)Bob sends the number %d to Alice\n", R2); 
+ 
+    // Step 5 & 6 
+    K1 = power(R2, x, p); 
+    K2 = power(R1, y, p); 
+ 
+    printf("5)Alice calculates the symmetric key K=%d\n", K1); 
+    printf("6)Bob calculates the symmetric key K=%d\n", K2); 
+ 
+    // Final key 
+    printf("7)K_Final=%d\n", K1); 
+ 
+    return 0; 
+}
